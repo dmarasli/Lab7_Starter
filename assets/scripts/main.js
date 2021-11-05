@@ -200,7 +200,7 @@ function bindEscKey() {
   document.addEventListener('keydown', function(event){
     if(event.key == "Escape"){
       console.log("Escape button used");
-      router.navigate('home');
+      router.navigate('home', false);
     }
   });
 
@@ -228,4 +228,12 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
+    window.addEventListener('popstate', function(event){
+      if(event.state != undefined) { // If your event has a state object
+        router.navigate(event.state, true); // navigate to that page,
+      }
+      else { //otherwise navigate to 'home'
+        router.navigate('home', true);
+      }
+    });
 }
