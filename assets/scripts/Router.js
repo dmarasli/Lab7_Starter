@@ -79,7 +79,7 @@ export class Router {
 
     let url = window.location.origin + hash;
     if(statePopped == false || window.location.hash != hash) {
-      history.pushState(page, "", url);
+      history.pushState({page: page},"", url);
    
   }
   this[page]();
